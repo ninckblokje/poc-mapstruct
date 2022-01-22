@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2021, ninckblokje
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without
+  ~ modification, are permitted provided that the following conditions are met:
+  ~
+  ~ * Redistributions of source code must retain the above copyright notice, this
+  ~   list of conditions and the following disclaimer.
+  ~
+  ~ * Redistributions in binary form must reproduce the above copyright notice,
+  ~   this list of conditions and the following disclaimer in the documentation
+  ~   and/or other materials provided with the distribution.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  ~ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  ~ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  ~ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  ~ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  ~ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  ~ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  ~ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  ~ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="ninckblokje/PingPong" xmlns:tns="ninckblokje/PingPong" elementFormDefault="qualified">
+	
+	<xs:simpleType name="applicationServer">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Helidon SE"></xs:enumeration>
+			<xs:enumeration value="Helidon MP"></xs:enumeration>
+			<xs:enumeration value="Open Liberty"></xs:enumeration>
+			<xs:enumeration value="Quarkus"></xs:enumeration>
+			<xs:enumeration value="Spring Boot"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="framework">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Jakarta EE"></xs:enumeration>
+			<xs:enumeration value="Spring WS"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="applicationServerInformation">
+		<xs:sequence>
+			<xs:element name="Name" type="tns:applicationServer"></xs:element>
+			<xs:element name="Framework" type="tns:framework"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="clientInformation">
+		<xs:sequence>
+			<xs:element name="IPAddress" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="hostInformation">
+		<xs:sequence>
+			<xs:element name="HostName" type="xs:string"></xs:element>
+			<xs:element name="Architecture" type="xs:string"></xs:element>
+			<xs:element name="OperatingSystem" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pongResponse">
+		<xs:sequence>
+			<xs:element name="DateTime" type="xs:dateTime"></xs:element>
+			<xs:element name="Client" type="tns:clientInformation"></xs:element>
+			<xs:element name="Host" type="tns:hostInformation"></xs:element>
+			<xs:element name="ApplicationServer" type="tns:applicationServerInformation"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="PingRequest">
+		<xs:complexType>
+			<xs:sequence></xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PongResponse" type="tns:pongResponse"></xs:element>
+	
+</xs:schema>
