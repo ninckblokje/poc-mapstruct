@@ -15,7 +15,5 @@ Some proof of concepts for testing and demoing MapStruct.
   - Class: [MismatchMapping.java](src/main/java/ninckblokje/poc/mapstruct/mapping/MismatchMapping.java)
   - Test: [MismatchMappingTest.java](src/test/java/ninckblokje/poc/mapstruct/mapping/MismatchMappingTest.java)
 - JAXB with one custom mapping method and JAXBElement<T>
-  - Class: [JAXBMapping.java](src/main/java/ninckblokje/poc/mapstruct/mapping/JAXBMapping.java)
-  - Test: [JAXBMappingTest.java](src/test/java/ninckblokje/poc/mapstruct/mapping/JAXBMappingTest.java)
-  - Class: [PongJAXBMapping.java](src/main/java/ninckblokje/poc/mapstruct/mapping/PongJAXBMapping.java)
-  - Test: [PongJAXBMappingTest.java](src/test/java/ninckblokje/poc/mapstruct/mapping/PongJAXBMappingTest.java)
+  - Class: [JAXBElementMapping.java](src/main/java/ninckblokje/poc/mapstruct/mapping/JAXBElementMapping.java)
+  - Test: [JAXBElementMappingTest.java](src/test/java/ninckblokje/poc/mapstruct/mapping/JAXBElementMappingTest.java)

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="ninckblokje/MapStruct/Test" xmlns:tns="ninckblokje/MapStruct/Test" elementFormDefault="qualified">
+    
+    <xs:complexType name="fieldItem">
+        <xs:sequence>
+            <xs:element name="field" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ImportantFieldItem" type="tns:fieldItem"/>
+    <xs:element name="UnimportantFieldItem" type="tns:fieldItem"/>
+
+    <xs:complexType name="itemList">
+        <xs:sequence>
+            <xs:element name="Items">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="tns:ImportantFieldItem"/>
+                        <xs:element ref="tns:UnimportantFieldItem"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ItemList" type="tns:itemList"/>
+    
+</xs:schema>

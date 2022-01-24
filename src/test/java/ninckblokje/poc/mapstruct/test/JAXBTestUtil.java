@@ -26,68 +26,30 @@
 
 package ninckblokje.poc.mapstruct.test;
 
-import ninckblokje.pingpong.*;
-import ninckblokje.poc.mapstruct.jaxb.PongResponseWrapper;
+import ninckblokje.mapstruct.test.FieldItem;
+import ninckblokje.mapstruct.test.ObjectFactory;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+import javax.xml.bind.JAXBElement;
 
 public class JAXBTestUtil {
 
-    private JAXBTestUtil() {}
+    private static final ObjectFactory of = new ObjectFactory();
 
-    public static PongResponseWrapper createPongResponseWrapper() throws DatatypeConfigurationException, ParseException {
-        var wrapper = new PongResponseWrapper();
-
-        wrapper.setElem(new ObjectFactory().createPongResponse(createPongResponse()));
-
-        return wrapper;
+    private JAXBTestUtil() {
     }
 
-    public static PongResponse createPongResponse() throws ParseException, DatatypeConfigurationException {
-        var response = new PongResponse();
+    public static JAXBElement<FieldItem> createImportantFieldItem() {
+        var item = new FieldItem();
+        item.setField(of.createFieldItemField("important"));
 
-        var sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-        var date = sdf.parse("2022-01-22T23:00:00+01:00");
-        var cal = GregorianCalendar.getInstance();
-        cal.setTime(date);
-
-        response.setDateTime(DatatypeFactory.newInstance().newXMLGregorianCalendar((GregorianCalendar) cal));
-
-        response.setClient(createClientInformation());
-        response.setHost(createHostInformation());
-        response.setApplicationServer(createApplicationServerInformation());
-
-        return response;
+        return of.createImportantFieldItem(item);
     }
 
-    public static ClientInformation createClientInformation() {
-        var info = new ClientInformation();
+    public static JAXBElement<FieldItem> createUnimportantFieldItem() {
+        var item = new FieldItem();
+        item.setField(of.createFieldItemField("not important"));
 
-        info.setIPAddress("127.0.0.1");
-
-        return info;
+        return of.createUnimportantFieldItem(item);
     }
 
-    public static HostInformation createHostInformation() {
-        var info = new HostInformation();
-
-        info.setHostName("localhost");
-        info.setArchitecture("amd64");
-        info.setOperatingSystem("windows");
-
-        return info;
-    }
-
-    public static ApplicationServerInformation createApplicationServerInformation() {
-        var info = new ApplicationServerInformation();
-
-        info.setName(ApplicationServer.QUARKUS);
-        info.setFramework(Framework.JAKARTA_EE);
-
-        return info;
-    }
 }

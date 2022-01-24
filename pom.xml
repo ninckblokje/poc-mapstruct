@@ -108,7 +108,7 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>${project.basedir}/src/main/resources/PingPong.xsd</source>
+                        <source>${project.basedir}/src/main/resources/Test.xsd</source>
                     </sources>
                 </configuration>
             </plugin>
